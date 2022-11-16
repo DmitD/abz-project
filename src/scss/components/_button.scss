@@ -1,0 +1,12 @@
+@import '../variables';
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $primary;
+	border-radius: 30px;
+	padding: 10px 20px;
+	min-width: 100px;
+	cursor: pointer;
+}
