@@ -6,7 +6,21 @@
 	justify-content: center;
 	background-color: $primary;
 	border-radius: 30px;
-	padding: 10px 20px;
+	padding: 7px 20px;
 	min-width: 100px;
 	cursor: pointer;
+	border: 1px solid transparent;
+
+	&:nth-child(1) {
+		margin-right: 10px;
+	}
+
+	&:hover {
+		background-color: #ffe302;
+	}
+
+	&:active {
+		background-color: darken($primary, 12%);
+		transform: translateY(1px);
+	}
 }

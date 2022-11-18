@@ -1,0 +1,31 @@
+.header {
+	width: 100%;
+	background-color: #ffff;
+	padding: 13px 0;
+	display: flex;
+	justify-content: center;
+
+	&--main {
+		width: 1170px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&--logo {
+			display: flex;
+			align-items: center;
+
+			img {
+				width: 104px;
+				height: 26px;
+			}
+		}
+
+		&--toolbar {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+}

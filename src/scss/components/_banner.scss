@@ -1,0 +1,42 @@
+.banner {
+	display: flex;
+	justify-content: center;
+
+	&--main {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+			url('../../assets/img/bg-pex.jpeg');
+		background-repeat: no-repeat;
+		background-size: cover;
+		padding: 164px 395px;
+		height: 650px;
+		width: 1170px;
+
+		&--info {
+			width: 380px;
+			color: #fff;
+
+			h1 {
+				font-size: 40px;
+				text-align: center;
+				line-height: 40px;
+				padding-bottom: 20px;
+			}
+
+			p {
+				font-size: 16px;
+				text-align: center;
+				line-height: 26px;
+				padding-bottom: 32px;
+			}
+
+			&--btn {
+				display: flex;
+				justify-content: center;
+			}
+		}
+	}
+}

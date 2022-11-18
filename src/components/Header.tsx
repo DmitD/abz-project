@@ -4,15 +4,17 @@ import Button from './Button'
 
 const Header: React.FC = () => {
 	return (
-		<div className='header'>
-			<div className='header--logo'>
-				<img width='60' height='60' src={logo} alt='logo' />
+		<header className='header'>
+			<div className='header--main'>
+				<div className='header--main--logo'>
+					<img width='60' height='60' src={logo} alt='logo' />
+				</div>
+				<div className='header--main--toolbar'>
+					<Button>Users</Button>
+					<Button>Sign up</Button>
+				</div>
 			</div>
-			<div className='header--toolbar'>
-				<Button>Users</Button>
-				<Button>Sign up</Button>
-			</div>
-		</div>
+		</header>
 	)
 }
 

@@ -4,5 +4,10 @@
 	list-style: none;
 	outline: none;
 	font-family: 'Nunito', sans-serif;
+	font-weight: 400;
 	box-sizing: border-box;
+}
+
+body {
+	background-color: $background;
 }
