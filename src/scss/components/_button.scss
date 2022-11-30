@@ -6,21 +6,27 @@
 	justify-content: center;
 	background-color: $primary;
 	border-radius: 30px;
-	padding: 7px 20px;
+	padding: 4px auto;
 	min-width: 100px;
 	cursor: pointer;
-	border: 1px solid transparent;
+	border: 0 solid transparent;
 
-	&:nth-child(1) {
-		margin-right: 10px;
-	}
-
-	&:hover {
+	&:not(.button-disabled):hover {
 		background-color: #ffe302;
 	}
 
-	&:active {
+	&:not(.button-disabled):active {
 		background-color: darken($primary, 12%);
 		transform: translateY(1px);
 	}
+
+	span {
+		padding: 4px 0;
+	}
+}
+
+.button-disabled {
+	color: rgba(255, 255, 255, 87%);
+	background-color: #b4b4b4;
+	pointer-events: none;
 }

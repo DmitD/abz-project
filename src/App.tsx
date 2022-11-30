@@ -1,9 +1,7 @@
 import React from 'react'
-import Header from './components/Header'
-import Banner from './components/Banner'
+import { Header, Banner, UsersList, Registration } from './components'
 
 import './scss/app.scss'
-import UsersList from './components/UsersList'
 
 const App: React.FC = () => {
 	return (
@@ -11,6 +9,7 @@ const App: React.FC = () => {
 			<Header />
 			<Banner />
 			<UsersList />
+			<Registration />
 		</div>
 	)
 }

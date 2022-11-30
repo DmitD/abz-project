@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from '../assets/img/Logo.svg'
-import Button from './Button'
+import logo from '../../assets/img/Logo.svg'
+import { Button } from '../Button/Button'
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
 	return (
 		<header className='header'>
 			<div className='header--main'>
@@ -10,12 +10,14 @@ const Header: React.FC = () => {
 					<img width='60' height='60' src={logo} alt='logo' />
 				</div>
 				<div className='header--main--toolbar'>
-					<Button>Users</Button>
-					<Button>Sign up</Button>
+					<Button>
+						<span>Users</span>
+					</Button>
+					<Button>
+						<span>Sign up</span>
+					</Button>
 				</div>
 			</div>
 		</header>
 	)
 }
-
-export default Header

@@ -6,16 +6,14 @@ type ButtonProps = {
 	disabled?: React.ReactNode
 }
 
-const Button: React.FC<ButtonProps> = ({ children, disabled }) => {
+export const Button: React.FC<ButtonProps> = ({ children, disabled }) => {
 	return (
 		<button
 			className={classNames('button', {
-				'button--disabled': disabled,
+				'button-disabled': disabled,
 			})}
 		>
 			{children}
 		</button>
 	)
 }
-
-export default Button

@@ -1,7 +1,7 @@
 import React from 'react'
-import Button from './Button'
+import { Button } from '../Button/Button'
 
-const SectionDescribe: React.FC = () => {
+export const Banner: React.FC = () => {
 	return (
 		<section className='banner'>
 			<div className='banner--main'>
@@ -14,13 +14,11 @@ const SectionDescribe: React.FC = () => {
 						mind. They should also be excited to learn, as the world of
 						Front-End Development keeps evolving.
 					</p>
-					<div className='banner--main--info--btn'>
-						<Button>Sign up</Button>
-					</div>
+					<Button>
+						<span>Sign up</span>
+					</Button>
 				</div>
 			</div>
 		</section>
 	)
 }
-
-export default SectionDescribe

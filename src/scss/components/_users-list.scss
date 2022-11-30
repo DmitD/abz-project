@@ -1,0 +1,29 @@
+.users-list {
+	padding-top: 140px;
+	display: flex;
+	justify-content: center;
+
+	&--main {
+		width: 1170px;
+
+		h2 {
+			text-align: center;
+			font-size: 40px;
+			line-height: 40px;
+		}
+
+		button {
+			margin: 0 auto;
+			min-width: 120px;
+		}
+
+		&--wrapper {
+			display: grid;
+			grid-template-rows: repeat(2, 1fr);
+			grid-template-columns: repeat(3, 1fr);
+			grid-column-gap: 30px;
+			grid-row-gap: 30px;
+			padding: 50px 0;
+		}
+	}
+}
