@@ -1,17 +1,32 @@
 import React from 'react'
 import omit from 'lodash.omit'
+import { ErrorsFormType, ValuesFormType } from '../types'
+import { Context } from '../index'
 
-export const useForm = () => {
+export const useForm = (callback: () => void) => {
+	const { store } = React.useContext(Context)
 	//Form values
-	const [values, setValues] = React.useState({})
+	const [values, setValues] = React.useState<ValuesFormType>({
+		position: 'Lawyer', //store.positions[0].name,
+	})
 	//Errors
-	const [errors, setErrors] = React.useState({})
+	const [errors, setErrors] = React.useState<ErrorsFormType>({})
 
-	const validate = (name: string, value: string) => {
+	const validate = (
+		event: React.ChangeEvent<HTMLInputElement>,
+		name: string,
+		value: string
+	) => {
 		//A function to validate each input values
 		switch (name) {
 			case 'name':
-				if (!value || value.length > 30 || name.length < 2) {
+				if (!value) {
+					// we will set the error state
+					setErrors({
+						...errors,
+						name: 'Name is required field',
+					})
+				} else if (value.length > 30 || value.length < 2) {
 					// we will set the error state
 					setErrors({
 						...errors,
@@ -34,7 +49,10 @@ export const useForm = () => {
 						email: 'Email is required field',
 					})
 				} else if (value.length > 30 || !patternEmail.test(value)) {
-					return 'The email must be a valid email address'
+					setErrors({
+						...errors,
+						email: 'The email must be a valid email address',
+					})
 				} else {
 					let newObj = omit(errors, 'email')
 					setErrors(newObj)
@@ -59,26 +77,50 @@ export const useForm = () => {
 				}
 				break
 
+			// case 'position':
+			// 	if (!value) {
+			// 		setErrors({
+			// 			...errors,
+			// 			position: 'Select your position',
+			// 		})
+			// 	} else {
+			// 		let newObj = omit(errors, 'phone')
+			// 		setErrors(newObj)
+			// 	}
+			// 	break
+
+			case 'photo':
+				if (event.target.files) {
+					let file = event.target.files[0]
+					let img = new Image()
+					img.src = window.URL.createObjectURL(file)
+					img.onload = () => {
+						if (img.width < 70 && img.height < 70) {
+							setErrors({
+								...errors,
+								photo: 'Minimum size of photo 70x70px',
+							})
+						}
+					}
+					if (file.type !== 'image/jpg') {
+						setErrors({
+							...errors,
+							photo: 'Invalid file type',
+						})
+					} else if (file.size > 5242880) {
+						setErrors({
+							...errors,
+							photo: 'File format jpg up to 5 MB',
+						})
+					} else {
+						let newObj = omit(errors, 'photo')
+						setErrors(newObj)
+					}
+				}
+				break
+
 			default:
 				break
-		}
-	}
-
-	const validateFile = (name: string, file: File) => {
-		var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i
-		if (!file || !allowedExtensions.exec(file.type)) {
-			setErrors({
-				...errors,
-				photo: 'Invalid file type',
-			})
-		} else if (file.size > 5242880) {
-			setErrors({
-				...errors,
-				photo: 'File format jpg up to 5 MB',
-			})
-		} else {
-			let newObj = omit(errors, 'photo')
-			setErrors(newObj)
 		}
 	}
 
@@ -87,35 +129,37 @@ export const useForm = () => {
 		let name = event.target.name
 		let val = event.target.value
 
-		validate(name, val)
+		validate(event, name, val)
 
 		//Let's set these values in state
-		setValues({
-			...values,
-			[name]: val,
-		})
-	}
-
-	//A method to handle form inputs for file
-	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files) {
-			let name = event.target.name
 			let file = event.target.files[0]
-
-			validateFile(name, file)
-
 			setValues({
 				...values,
 				[name]: file,
 			})
+		} else {
+			setValues({
+				...values,
+				[name]: val,
+			})
 		}
-		return
+	}
+
+	const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+		if (event) event.preventDefault()
+
+		if (Object.keys(errors).length === 0 && Object.keys(values).length !== 0) {
+			callback()
+		} else {
+			alert('There is an Error!')
+		}
 	}
 
 	return {
 		values,
 		errors,
 		handleChange,
-		handleFileChange,
+		handleSubmit,
 	}
 }

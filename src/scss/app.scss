@@ -1,3 +1,14 @@
-@import 'variables';
-@import 'normalize';
-@import 'components/all';
+@import './variables';
+@import './normalize';
+
+@import '../components/Header/Header.scss';
+@import '../components/Banner/Banner.scss';
+@import '../components/Users/UserList.scss';
+@import '../components/Users/User/User.scss';
+@import '../components/Registration/Registration.scss';
+@import '../components/Registration/RegForm/RegForm.scss';
+@import '../components/Registration/RegForm/Radio/Radio.scss';
+@import '../components/Registration/RegForm/Upload/Upload.scss';
+@import '../components/Button/Button.scss';
+@import '../components/ScrollToTop/ScrollToTop.scss';
+@import '../components/Registration/RegSuccess/RegSuccess.scss';

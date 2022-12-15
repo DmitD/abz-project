@@ -1,0 +1,32 @@
+@import '../../scss/variables';
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $primary;
+	border-radius: 30px;
+	padding: 4px auto;
+	min-width: 100px;
+	cursor: pointer;
+	border: 0 solid transparent;
+
+	&:not(.button-disabled):hover {
+		background-color: $hover;
+	}
+
+	&:not(.button-disabled):active {
+		background-color: darken($primary, 12%);
+		transform: translateY(1px);
+	}
+
+	span {
+		padding: 4px 0;
+	}
+}
+
+.button-disabled {
+	color: rgba(255, 255, 255, 87%);
+	background-color: #b4b4b4;
+	pointer-events: none;
+}

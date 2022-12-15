@@ -1,0 +1,25 @@
+@import '../../scss/variables';
+
+.top-btn-position {
+	position: fixed;
+	bottom: 15px;
+	right: 20px;
+	z-index: 3;
+}
+
+.top-btn-style {
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	//border: 2px solid #333;
+	background-color: $primary;
+	color: #000;
+	cursor: pointer;
+}
+
+.top-btn-style:hover {
+	animation: none;
+	background-color: $hover;
+	//color: #fff;
+	//border: 2px solid #fff;
+}

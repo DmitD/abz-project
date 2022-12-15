@@ -3,24 +3,24 @@ import React from 'react'
 type RadioProps = {
 	radioName: string
 	label: string
-	currentValue: string
+	position: string
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const Radio: React.FC<RadioProps> = ({
 	radioName,
 	label,
-	currentValue,
+	position,
 	onChange,
 }) => {
 	return (
-		<div>
-			<label className='custom-radio'>
+		<div className='radio-checkbox'>
+			<label>
 				<input
 					type='radio'
 					name={radioName}
 					value={label}
-					checked={currentValue === label ? true : false}
+					checked={position === label ? true : false}
 					onChange={onChange}
 				/>
 				<span>{label}</span>

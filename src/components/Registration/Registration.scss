@@ -1,0 +1,32 @@
+.registration {
+	display: flex;
+	justify-content: center;
+
+	&--main {
+		width: 100%;
+		max-width: 1170px;
+		padding-top: 140px;
+		padding-bottom: 100px;
+
+		h2 {
+			text-align: center;
+			font-size: 40px;
+			line-height: 40px;
+		}
+
+		&--form {
+			padding-top: 50px;
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.registration {
+		&--main {
+			padding-left: 16px;
+			padding-right: 16px;
+		}
+	}
+}

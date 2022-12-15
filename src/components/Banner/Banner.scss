@@ -1,0 +1,62 @@
+.banner {
+	display: flex;
+	justify-content: center;
+	margin-top: 60px;
+
+	&--main {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		//padding: 164px 0;
+		height: 650px;
+		width: 100%;
+		max-width: 1170px;
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+			url('../../assets/img/bg-pex.jpeg');
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+
+		&--info {
+			width: 380px;
+			color: #fff;
+
+			h1 {
+				font-size: 40px;
+				text-align: center;
+				line-height: 40px;
+				padding-bottom: 20px;
+			}
+
+			p {
+				font-size: 16px;
+				text-align: center;
+				line-height: 26px;
+				padding-bottom: 32px;
+			}
+
+			button {
+				margin: 0 auto;
+			}
+		}
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+	.banner {
+		&--main {
+			height: 500px;
+		}
+	}
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px) {
+	.banner {
+		&--main {
+			height: 500px;
+			&--info {
+				width: 328px;
+			}
+		}
+	}
+}

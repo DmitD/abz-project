@@ -31,7 +31,8 @@
 
 	&--radio {
 		margin-bottom: 46px;
-		&--label {
+
+		p {
 			margin-bottom: 10px;
 		}
 	}
@@ -54,4 +55,26 @@ input.error-inp {
 
 small.error-txt {
 	color: #cd3d40;
+}
+
+@media screen and (min-width: 360px) and (max-width: 767px) {
+	.reg-form {
+		&--text {
+			input {
+				width: 328px;
+			}
+		}
+		&--upload {
+			width: 328px;
+		}
+	}
+}
+
+@media screen and (max-width: 359px) {
+	.reg-form--text input {
+		width: 248px;
+	}
+	.reg-form--upload {
+		width: 248px;
+	}
 }

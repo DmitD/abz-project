@@ -14,9 +14,13 @@ const user = {
 		'https://frontend-test-assignment-api.abz.agency/images/users/5b977ba13fb3330.jpeg',
 }
 
-export const UsersList: React.FC = () => {
+type UserListProps = {
+	sectionRef: React.MutableRefObject<HTMLDivElement | null>
+}
+
+export const UsersList: React.FC<UserListProps> = ({ sectionRef }) => {
 	return (
-		<section className='users-list'>
+		<section ref={sectionRef} className='users-list'>
 			<div className='users-list--main'>
 				<h2>Working with GET request</h2>
 				<div className='users-list--main--wrapper'>
