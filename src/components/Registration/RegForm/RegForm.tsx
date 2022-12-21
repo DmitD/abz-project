@@ -1,23 +1,22 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
 import { Button } from '../../Button/Button'
 import { Radio } from './Radio/Radio'
 import { Upload } from './Upload/Upload'
 import { useForm } from '../../../utils/useForm'
-import { IPosition } from '../../../types'
 import { LoadingPosition } from '../../Loading/LoadingPosition'
+import { Context } from '../../../index'
 
-type RegFormProps = {
-	positionValues: IPosition[]
-	isLoad: boolean
-	isError: string
-}
-
-export const RegForm: React.FC<RegFormProps> = ({
-	positionValues,
-	isLoad,
-	isError,
-}) => {
+export const RegForm: React.FC = observer(() => {
+	const { store } = React.useContext(Context)
+	const { isLoadPositions, positions, errorPositions, errorCreateUser } = store
 	const regForm = () => {
+		if (!localStorage.getItem('token')) {
+			store.getToken()
+		}
+		if (localStorage.getItem('token')) {
+			store.createUser(values)
+		}
 		console.log('Callback function when form is submitted!')
 		console.log('Form Values ', values)
 	}
@@ -28,7 +27,7 @@ export const RegForm: React.FC<RegFormProps> = ({
 		<LoadingPosition key={index} />
 	))
 
-	console.log(values)
+	//console.log(values)
 
 	return (
 		<form className='reg-form' onSubmit={handleSubmit}>
@@ -76,17 +75,18 @@ export const RegForm: React.FC<RegFormProps> = ({
 			</div>
 			<div className='reg-form--radio'>
 				<p>Select your position</p>
-				{isLoad ? (
-					positionValues.map(val => (
+				{isLoadPositions ? (
+					positions.map(val => (
 						<Radio
 							key={val.id}
+							id={val.id}
 							label={val.name}
 							radioName='position'
-							position={values.position ?? ''}
+							position={values.position ? Number(values.position) : 1}
 							onChange={handleChange}
 						/>
 					))
-				) : isError ? (
+				) : errorPositions ? (
 					<span style={{ color: '#cd3d40' }}>
 						Sorry, something has gone wrong
 					</span>
@@ -105,7 +105,7 @@ export const RegForm: React.FC<RegFormProps> = ({
 				disabled={
 					Object.keys(errors).length === 0 &&
 					Object.keys(values).length === 5 &&
-					!isError
+					!errorPositions
 						? false
 						: true
 				}
@@ -113,6 +113,11 @@ export const RegForm: React.FC<RegFormProps> = ({
 			>
 				<span>Sign up</span>
 			</Button>
+			<div className='reg-form--sign-error'>
+				<small className={errorCreateUser ? 'error-txt' : ''}>
+					{errorCreateUser ?? ''}
+				</small>
+			</div>
 		</form>
 	)
-}
+})

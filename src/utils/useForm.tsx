@@ -1,14 +1,10 @@
 import React from 'react'
 import omit from 'lodash.omit'
 import { ErrorsFormType, ValuesFormType } from '../types'
-import { Context } from '../index'
 
 export const useForm = (callback: () => void) => {
-	const { store } = React.useContext(Context)
 	//Form values
-	const [values, setValues] = React.useState<ValuesFormType>({
-		position: 'Lawyer', //store.positions[0].name,
-	})
+	const [values, setValues] = React.useState<ValuesFormType>({ position: '1' })
 	//Errors
 	const [errors, setErrors] = React.useState<ErrorsFormType>({})
 
@@ -102,7 +98,7 @@ export const useForm = (callback: () => void) => {
 							})
 						}
 					}
-					if (file.type !== 'image/jpg') {
+					if (file.type !== 'image/jpeg') {
 						setErrors({
 							...errors,
 							photo: 'Invalid file type',
@@ -154,6 +150,23 @@ export const useForm = (callback: () => void) => {
 		} else {
 			alert('There is an Error!')
 		}
+	}
+
+	const clear = () => {
+		setValues({
+			name: '',
+			email: '',
+			phone: '',
+			position: '1',
+			photo: undefined,
+		})
+		setErrors({
+			name: '',
+			email: '',
+			phone: '',
+			position: '',
+			photo: '',
+		})
 	}
 
 	return {

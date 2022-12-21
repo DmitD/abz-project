@@ -4,6 +4,8 @@
 	align-items: center;
 	text-align: center;
 	width: 100%;
+	min-width: 282px;
+	//max-width: 370px;
 	background-color: #ffff;
 	border-radius: 10px;
 	padding: 20px;
@@ -14,29 +16,43 @@
 		border-radius: 50%;
 	}
 
-	&--name {
-		text-overflow: ellipsis;
-		padding: 20px 0;
-	}
+	&--info {
+		width: 100%;
 
-	&--position {
-		text-overflow: ellipsis;
-	}
-
-	&--email {
-		text-overflow: ellipsis;
-		cursor: pointer;
-	}
-
-	.user--tooltip {
-		border-radius: 4px;
-		padding: 3px 16px;
-		font-size: 16px;
-		color: #fff;
-
-		&:before,
-		&:after {
-			display: none;
+		&--name {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			padding: 20px 0;
 		}
+
+		&--position {
+			text-overflow: ellipsis;
+		}
+
+		&--email {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			cursor: pointer;
+		}
+
+		.user--tooltip {
+			border-radius: 4px;
+			padding: 3px 16px;
+			font-size: 16px;
+			color: #fff;
+
+			&:before,
+			&:after {
+				display: none;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 359px) {
+	.user {
+		min-width: 230px;
 	}
 }

@@ -11,6 +11,7 @@ type RegistrationProps = {
 export const Registration: React.FC<RegistrationProps> = observer(
 	({ sectionRef }) => {
 		const { store } = React.useContext(Context)
+		const { userId } = store
 
 		React.useEffect(() => {
 			store.getPositions()
@@ -19,14 +20,13 @@ export const Registration: React.FC<RegistrationProps> = observer(
 		return (
 			<section ref={sectionRef} className='registration'>
 				<div className='registration--main'>
-					<h2>Working with POST request</h2>
+					<h2>
+						{userId
+							? 'User successfully registered'
+							: 'Working with POST request'}
+					</h2>
 					<div className='registration--main--form'>
-						<RegForm
-							positionValues={store.positions}
-							isLoad={store.isLoadPositions}
-							isError={store.errorPositions}
-						/>
-						{/* <RegSuccess /> */}
+						{userId ? <RegSuccess /> : <RegForm />}
 					</div>
 				</div>
 			</section>

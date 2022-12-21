@@ -1,9 +1,13 @@
 import { AxiosResponse } from 'axios'
-import $api from '../api'
-import { UsersResponse } from '../types'
+import { $api } from '../api'
+import { UsersResponse, UserResponse } from '../types'
 
 export default class UsersService {
-	static fetchPositions(): Promise<AxiosResponse<UsersResponse>> {
-		return $api.get<UsersResponse>('/users')
+	static fetchUsers(page: number): Promise<AxiosResponse<UsersResponse>> {
+		return $api.get<UsersResponse>(`/users?page=${page}&count=6`)
+	}
+
+	static postUser(newUser: any): Promise<AxiosResponse<UserResponse>> {
+		return $api.post<UserResponse>('/users', newUser)
 	}
 }

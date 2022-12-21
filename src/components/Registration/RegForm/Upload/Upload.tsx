@@ -19,7 +19,7 @@ export const Upload: React.FC<UploadProps> = ({
 					type='file'
 					name='photo'
 					id='file-btn'
-					accept='image/jpeg, image/jpg'
+					accept='image/jpeg,image/jpg'
 					style={{ display: 'none' }}
 					onChange={handleChange}
 				/>

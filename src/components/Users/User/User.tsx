@@ -27,13 +27,19 @@ export const User: React.FC<UserProps> = ({ user }) => {
 					e.target.src = defaultAvatar
 				}}
 			/>
-			<h3 className='user--name'>{user.name}</h3>
-			<p className='user--position'>{user.position}</p>
-			<p className='user--email' data-tip={user.email}>
-				{user.email}
-			</p>
-			<ReactTooltip border={false} place='bottom' className='user--tooltip' />
-			<p className='user--phone'>{formatPhone(user.phone)}</p>
+			<div className='user--info'>
+				<h3 className='user--info--name'>{user.name}</h3>
+				<p className='user--info--position'>{user.position}</p>
+				<p className='user--info--email' data-tip={user.email}>
+					{user.email}
+				</p>
+				<ReactTooltip
+					border={false}
+					place='bottom'
+					className='user--info--tooltip'
+				/>
+				<p className='user--info--phone'>{formatPhone(user.phone)}</p>
+			</div>
 		</div>
 	)
 }

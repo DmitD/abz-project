@@ -40,8 +40,14 @@ export interface UsersResponse {
 	users: IUser[]
 }
 
+export interface UserResponse {
+	success: boolean
+	user_id: number
+	message: string
+}
+
 export interface IUser {
-	id: number
+	id: string
 	name: string
 	email: string
 	phone: string
