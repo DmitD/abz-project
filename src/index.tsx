@@ -1,19 +1,24 @@
 import React, { createContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import Store from './store/store'
+import { RootStore, rootStore } from './store/RootStore'
+//import Store from './store/store'
 
-interface State {
-	store: Store
+// interface State {
+// 	store: Store
+// }
+
+export interface Store {
+	rootStore: RootStore
 }
 
-const store = new Store()
+//const store = new Store()
 
-export const Context = createContext<State>({ store })
+export const Context = createContext<RootStore>(rootStore)
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-	<Context.Provider value={{ store }}>
+	<Context.Provider value={rootStore}>
 		<App />
 	</Context.Provider>
 )

@@ -34,8 +34,8 @@ export interface UsersResponse {
 	total_users: number
 	count: number
 	links: {
-		next_url: string | null
-		prev_url: string | null
+		next_url: null | string
+		prev_url: null | string
 	}
 	users: IUser[]
 }

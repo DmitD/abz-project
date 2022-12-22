@@ -5,17 +5,18 @@ import { Radio } from './Radio/Radio'
 import { Upload } from './Upload/Upload'
 import { useForm } from '../../../utils/useForm'
 import { LoadingPosition } from '../../Loading/LoadingPosition'
-import { Context } from '../../../index'
+import { useStores } from '../../../utils/useStores'
 
 export const RegForm: React.FC = observer(() => {
-	const { store } = React.useContext(Context)
-	const { isLoadPositions, positions, errorPositions, errorCreateUser } = store
+	const { positionsStore, authStore, tokenStore } = useStores()
+	const { isLoadPositions, positions, errorPositions } = positionsStore
+	const { errorCreateUser } = authStore
 	const regForm = () => {
 		if (!localStorage.getItem('token')) {
-			store.getToken()
+			tokenStore.getToken()
 		}
 		if (localStorage.getItem('token')) {
-			store.createUser(values)
+			authStore.createUser(values)
 		}
 		console.log('Callback function when form is submitted!')
 		console.log('Form Values ', values)

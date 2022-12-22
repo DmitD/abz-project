@@ -6,8 +6,10 @@ import { IUser, IPosition, ValuesFormType } from '../types'
 
 export default class Store {
 	users = [] as IUser[]
+	isLoadUsers = false
 	errorUsers = ''
 	currentPage = 1
+	nextUrl: null | string = null
 	positions = [] as IPosition[]
 	isLoadPositions = false
 	errorPositions = ''
@@ -22,12 +24,20 @@ export default class Store {
 		this.users = [...this.users, ...users]
 	}
 
+	setIsLoadUsers(bool: boolean) {
+		this.isLoadUsers = bool
+	}
+
 	setErrorUsers(message: string) {
 		this.errorUsers = message
 	}
 
 	setPage() {
 		this.currentPage += 1
+	}
+
+	setNextUrl(url: null | string) {
+		this.nextUrl = url
 	}
 
 	setPositions(positions: IPosition[]) {
@@ -88,10 +98,13 @@ export default class Store {
 
 	async getUsers(page: number) {
 		try {
+			this.setIsLoadUsers(false)
 			const response = await UsersService.fetchUsers(page)
 			if (response.data.success) {
 				this.setUsers(response.data.users)
+				this.setIsLoadUsers(true)
 				this.setPage()
+				this.setNextUrl(response.data.links.next_url)
 				console.log(response.data)
 			}
 		} catch (error: any) {

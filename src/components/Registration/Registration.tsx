@@ -1,6 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react-lite'
-import { Context } from '../..'
+import { useStores } from '../../utils/useStores'
 import { RegForm } from './RegForm/RegForm'
 import { RegSuccess } from './RegSuccess/RegSuccess'
 
@@ -10,12 +10,12 @@ type RegistrationProps = {
 
 export const Registration: React.FC<RegistrationProps> = observer(
 	({ sectionRef }) => {
-		const { store } = React.useContext(Context)
-		const { userId } = store
+		const { authStore, positionsStore } = useStores()
+		const { userId } = authStore
 
 		React.useEffect(() => {
-			store.getPositions()
-		}, [store])
+			positionsStore.getPositions()
+		}, [positionsStore])
 
 		return (
 			<section ref={sectionRef} className='registration'>
