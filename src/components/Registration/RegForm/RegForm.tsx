@@ -3,17 +3,24 @@ import { observer } from 'mobx-react-lite'
 import { Button } from '../../Button/Button'
 import { Radio } from './Radio/Radio'
 import { Upload } from './Upload/Upload'
-import { useForm } from '../../../utils/useForm'
+import { useForm } from '../../../hooks/useForm'
 import { LoadingPosition } from '../../Loading/LoadingPosition'
-import { useStores } from '../../../utils/useStores'
+import { useStores } from '../../../hooks/useStores'
 
 export const RegForm: React.FC = observer(() => {
 	const { positionsStore, authStore, tokenStore } = useStores()
 	const { isLoadPositions, positions, errorPositions } = positionsStore
 	const { errorCreateUser } = authStore
-	const regForm = () => {
+
+	const regForm = async () => {
 		if (!localStorage.getItem('token')) {
-			tokenStore.getToken()
+			const token = await tokenStore.getToken()
+			if (token) {
+				authStore.createUser(values)
+				return
+			} else {
+				authStore.setErrorCreateUser('Sorry, something has gone wrong')
+			}
 		}
 		if (localStorage.getItem('token')) {
 			authStore.createUser(values)
@@ -27,8 +34,6 @@ export const RegForm: React.FC = observer(() => {
 	const skeletons = [...new Array(3)].map((_, index) => (
 		<LoadingPosition key={index} />
 	))
-
-	//console.log(values)
 
 	return (
 		<form className='reg-form' onSubmit={handleSubmit}>

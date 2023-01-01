@@ -1,9 +1,9 @@
 export const scrollToSection = (
-	refToElem: React.MutableRefObject<HTMLDivElement | null>
+	refToElem: React.MutableRefObject<HTMLDivElement | null> | null
 ) => {
-	if (null !== refToElem.current) {
+	if (null !== refToElem?.current) {
 		window.scrollTo({
-			top: refToElem.current.offsetTop,
+			top: refToElem?.current.offsetTop,
 			behavior: 'smooth',
 		})
 	}

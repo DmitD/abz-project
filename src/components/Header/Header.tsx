@@ -1,16 +1,14 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
 import logo from '../../assets/img/Logo.svg'
 import { Button } from '../Button/Button'
 import { scrollToSection, scrollTop } from '../../utils/scrollTo'
+import { useStores } from '../../hooks/useStores'
 
-type HeaderProps = {
-	elemRefs: {
-		userListRef: React.MutableRefObject<HTMLDivElement | null>
-		registrationRef: React.MutableRefObject<HTMLDivElement | null>
-	}
-}
+export const Header: React.FC = observer(() => {
+	const { scrollStore } = useStores()
+	const { scrollToUserList, scrollToRegistration } = scrollStore
 
-export const Header: React.FC<HeaderProps> = ({ elemRefs }) => {
 	return (
 		<header className='header'>
 			<div className='header--main'>
@@ -18,14 +16,14 @@ export const Header: React.FC<HeaderProps> = ({ elemRefs }) => {
 					<img width='60' height='60' src={logo} alt='logo' />
 				</div>
 				<div className='header--main--toolbar'>
-					<Button onClick={() => scrollToSection(elemRefs.userListRef)}>
+					<Button onClick={() => scrollToSection(scrollToUserList)}>
 						<span>Users</span>
 					</Button>
-					<Button onClick={() => scrollToSection(elemRefs.registrationRef)}>
+					<Button onClick={() => scrollToSection(scrollToRegistration)}>
 						<span>Sign up</span>
 					</Button>
 				</div>
 			</div>
 		</header>
 	)
-}
+})

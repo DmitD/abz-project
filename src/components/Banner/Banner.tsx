@@ -1,7 +1,13 @@
 import React from 'react'
+import { observer } from 'mobx-react-lite'
 import { Button } from '../Button/Button'
+import { scrollToSection } from '../../utils/scrollTo'
+import { useStores } from '../../hooks/useStores'
 
-export const Banner: React.FC = () => {
+export const Banner: React.FC = observer(() => {
+	const { scrollStore } = useStores()
+	const { scrollToRegistration } = scrollStore
+
 	return (
 		<section className='banner'>
 			<div className='banner--main'>
@@ -14,11 +20,11 @@ export const Banner: React.FC = () => {
 						mind. They should also be excited to learn, as the world of
 						Front-End Development keeps evolving.
 					</p>
-					<Button>
+					<Button onClick={() => scrollToSection(scrollToRegistration)}>
 						<span>Sign up</span>
 					</Button>
 				</div>
 			</div>
 		</section>
 	)
-}
+})

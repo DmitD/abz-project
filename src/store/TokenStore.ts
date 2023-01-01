@@ -19,6 +19,7 @@ export default class TokenStore {
 			if (response.data.success) {
 				this.setToken(response.data.token)
 				console.log(response.data.token)
+				return response.data.token
 			}
 		} catch (error: any) {
 			console.log('API getToken error: ', error.message)

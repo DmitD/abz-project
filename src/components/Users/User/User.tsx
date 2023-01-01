@@ -18,7 +18,7 @@ type UserProps = {
 
 export const User: React.FC<UserProps> = ({ user }) => {
 	return (
-		<div className='user'>
+		<div className='user' data-testid='user'>
 			<img
 				className='user--photo'
 				src={user.photo || defaultAvatar}
@@ -37,6 +37,7 @@ export const User: React.FC<UserProps> = ({ user }) => {
 					border={false}
 					place='bottom'
 					className='user--info--tooltip'
+					role='tooltip'
 				/>
 				<p className='user--info--phone'>{formatPhone(user.phone)}</p>
 			</div>

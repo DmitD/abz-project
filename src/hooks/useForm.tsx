@@ -22,7 +22,7 @@ export const useForm = (callback: () => void) => {
 						...errors,
 						name: 'Name is required field',
 					})
-				} else if (value.length > 30 || value.length < 2) {
+				} else if (value.length > 60 || value.length < 2) {
 					// we will set the error state
 					setErrors({
 						...errors,
@@ -44,7 +44,7 @@ export const useForm = (callback: () => void) => {
 						...errors,
 						email: 'Email is required field',
 					})
-				} else if (value.length > 30 || !patternEmail.test(value)) {
+				} else if (value.length > 60 || !patternEmail.test(value)) {
 					setErrors({
 						...errors,
 						email: 'The email must be a valid email address',
@@ -72,18 +72,6 @@ export const useForm = (callback: () => void) => {
 					setErrors(newObj)
 				}
 				break
-
-			// case 'position':
-			// 	if (!value) {
-			// 		setErrors({
-			// 			...errors,
-			// 			position: 'Select your position',
-			// 		})
-			// 	} else {
-			// 		let newObj = omit(errors, 'phone')
-			// 		setErrors(newObj)
-			// 	}
-			// 	break
 
 			case 'photo':
 				if (event.target.files) {
@@ -150,23 +138,6 @@ export const useForm = (callback: () => void) => {
 		} else {
 			alert('There is an Error!')
 		}
-	}
-
-	const clear = () => {
-		setValues({
-			name: '',
-			email: '',
-			phone: '',
-			position: '1',
-			photo: undefined,
-		})
-		setErrors({
-			name: '',
-			email: '',
-			phone: '',
-			position: '',
-			photo: '',
-		})
 	}
 
 	return {

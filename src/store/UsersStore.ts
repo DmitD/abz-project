@@ -36,6 +36,12 @@ export default class UsersStore {
 		this.nextUrl = url
 	}
 
+	setInitUsersParams() {
+		this.users = []
+		this.currentPage = 1
+		this.errorUsers = ''
+	}
+
 	async getUsers(page: number) {
 		try {
 			this.setIsLoadUsers(false)
@@ -45,7 +51,7 @@ export default class UsersStore {
 				this.setIsLoadUsers(true)
 				this.setPage()
 				this.setNextUrl(response.data.links.next_url)
-				console.log(response.data)
+				//console.log(response.data)
 			}
 		} catch (error: any) {
 			if (error.response.status === 404) {

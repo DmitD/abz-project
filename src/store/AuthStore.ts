@@ -6,6 +6,7 @@ import { RootStore } from './RootStore'
 export default class AuthStore {
 	rootStore
 	userId: null | number = null
+	isLoadingUser = false
 	errorCreateUser = ''
 
 	constructor(root: RootStore) {
@@ -13,8 +14,12 @@ export default class AuthStore {
 		makeAutoObservable(this)
 	}
 
-	setUserId(id: number) {
+	setUserId(id: null | number) {
 		this.userId = id
+	}
+
+	setIsLoadingUser(bool: boolean) {
+		this.isLoadingUser = bool
 	}
 
 	setErrorCreateUser(message: string) {
@@ -23,6 +28,8 @@ export default class AuthStore {
 
 	async createUser(values: ValuesFormType) {
 		try {
+			this.setIsLoadingUser(true)
+			this.setErrorCreateUser('')
 			const formData = new FormData()
 			formData.append('position_id', values.position ?? '')
 			formData.append('name', values.name ?? '')
@@ -32,6 +39,8 @@ export default class AuthStore {
 			const response = await UsersService.postUser(formData as any)
 			if (response.data.success) {
 				this.setUserId(response.data.user_id)
+				this.rootStore.usersStore.setInitUsersParams()
+				this.rootStore.usersStore.getUsers(1)
 				console.log(response.data)
 			}
 		} catch (error: any) {
@@ -41,6 +50,8 @@ export default class AuthStore {
 				this.setErrorCreateUser(error.message)
 			}
 			console.log('API createUser error: ', error.message)
+		} finally {
+			this.setIsLoadingUser(false)
 		}
 	}
 }

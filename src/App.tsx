@@ -10,15 +10,12 @@ import {
 import './scss/app.scss'
 
 const App: React.FC = () => {
-	const userListRef = React.useRef<HTMLDivElement | null>(null)
-	const registrationRef = React.useRef<HTMLDivElement | null>(null)
-
 	return (
-		<div className='container'>
-			<Header elemRefs={{ userListRef, registrationRef }} />
+		<div className='container' data-testid='app'>
+			<Header />
 			<Banner />
-			<UsersList sectionRef={userListRef} />
-			<Registration sectionRef={registrationRef} />
+			<UsersList />
+			<Registration />
 			<ScrollToTop />
 		</div>
 	)

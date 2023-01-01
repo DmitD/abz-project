@@ -16,7 +16,7 @@ export const ScrollToTop: React.FC = () => {
 	}, [])
 
 	return (
-		<div>
+		<div data-testid='scroll-top'>
 			{showScrollTopButton && (
 				<HiChevronDoubleUp
 					className='top-btn-position top-btn-style'
