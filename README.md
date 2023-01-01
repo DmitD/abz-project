@@ -5,7 +5,7 @@ Test assignment
 2. Working with REST API (GET).
 3. Working with REST API (POST).
 
-[abz-project.vercel.app](abz-project.vercel.app)
+[abz-project.vercel.app](https://abz-project.vercel.app/)
 
 Stack:
 
